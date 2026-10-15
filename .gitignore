@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.open-next/
+.vercel/
+.wrangler/
+.env
+.dev.vars
+*.tsbuildinfo
+*.log
+.DS_Store
