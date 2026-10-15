@@ -8,7 +8,7 @@ async function getAdminCreds() {
   let pass = process.env.ADMIN_PASS;
   try {
     const { env } = await getCloudflareContext({ async: true });
-    const cfEnv = env as Record<string, string | undefined>;
+    const cfEnv = env as unknown as Record<string, string | undefined>;
     user = cfEnv.ADMIN_USER ?? user;
     pass = cfEnv.ADMIN_PASS ?? pass;
   } catch {
