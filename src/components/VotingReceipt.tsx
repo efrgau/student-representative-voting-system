@@ -81,7 +81,7 @@ export const VotingReceipt: React.FC<VotingReceiptProps> = ({
             VOTO REGISTRADO CON ÉXITO
           </h2>
           <p className="text-xs text-orange-100 font-medium">
-            {receipt.institutionName || "Colegio Nuestra Señora de las Lajas - Pasto"}
+            {receipt.institutionName || "Institución Prueba"}
           </p>
         </div>
 

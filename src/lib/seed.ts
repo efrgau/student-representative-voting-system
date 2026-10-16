@@ -7,6 +7,15 @@ export async function ensureInitialData() {
   try {
     const existingElections = await db.select().from(elections);
     if (existingElections.length > 0) {
+      // Migración automática al nombre de ejemplo si aún tiene el anterior
+      const current = existingElections[0];
+      if (current.institutionName === "Colegio Nuestra Señora de las Lajas - Pasto") {
+        await db
+          .update(elections)
+          .set({ institutionName: "Institución Prueba" })
+          .where(eq(elections.id, current.id));
+        return { status: "already_seeded", migrated: "institutionName" };
+      }
       return { status: "already_seeded" };
     }
 
@@ -15,7 +24,7 @@ export async function ensureInitialData() {
       .insert(elections)
       .values({
         title: "SISTEMA DE VOTACIONES ESTUDIANTILES 2026",
-        institutionName: "Colegio Nuestra Señora de las Lajas - Pasto",
+        institutionName: "Institución Prueba",
         year: 2026,
         status: "active",
       })

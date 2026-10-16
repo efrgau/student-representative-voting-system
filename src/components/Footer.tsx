@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
         <div>
           <span>Sistema Institucional de Votaciones Estudiantiles Grado 11</span>
           <span className="hidden sm:inline"> • </span>
-          <span className="text-orange-100">Colegio Nuestra Señora de las Lajas</span>
+          <span className="text-orange-100">Institución Prueba</span>
         </div>
         <div className="text-orange-100 font-mono text-[11px]">
           Créditos : Edwin Pacheco Figueroa | edwin.f.pacheco@gmail.com

@@ -20,7 +20,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  institutionName = "Colegio Nuestra Señora de las Lajas - Pasto",
+  institutionName = "Institución Prueba",
   year = 2026,
   currentStudent,
   isAdmin,

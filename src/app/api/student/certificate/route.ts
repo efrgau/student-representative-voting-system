@@ -38,7 +38,7 @@ export async function GET(req: Request) {
         groupName: student.groupName,
         votedAt: student.votedAt,
         verificationCode: student.verificationCode,
-        institutionName: election?.institutionName || "Colegio Nuestra Señora de las Lajas - Pasto",
+        institutionName: election?.institutionName || "Institución Prueba",
         year: election?.year || 2026,
       },
     });

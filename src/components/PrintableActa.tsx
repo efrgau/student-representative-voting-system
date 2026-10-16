@@ -60,7 +60,7 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
               🎓
             </div>
             <h1 className="text-xl md:text-2xl font-black uppercase text-orange-950 font-sans tracking-wide">
-              {election?.institutionName || "COLEGIO NUESTRA SEÑORA DE LAS LAJAS - PASTO"}
+              {election?.institutionName || "INSTITUCIÓN PRUEBA"}
             </h1>
             <h2 className="text-base font-bold uppercase text-gray-700 mt-1 font-sans">
               ACTA OFICIAL DE ESCRUTINIO FINAL Y DECLARACIÓN DE GANADORES
