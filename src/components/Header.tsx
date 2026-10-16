@@ -33,19 +33,19 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="w-full shadow-md select-none">
       {/* Top Banner with Institution Color Gradient */}
-      <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-green-600 text-white px-4 py-3 md:px-8 border-b-4 border-emerald-900">
+      <div className="bg-gradient-to-r from-orange-800 via-orange-600 to-orange-500 text-white px-4 py-3 md:px-8 border-b-4 border-orange-900">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
           
           {/* Institution Crest & Title */}
           <div className="flex items-center space-x-3 text-center md:text-left">
             {/* Left Institutional Badge */}
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-emerald-800 flex items-center justify-center font-black text-xl shadow-lg border-2 border-yellow-400 shrink-0">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-orange-700 flex items-center justify-center font-black text-xl shadow-lg border-2 border-gray-200 shrink-0">
               <span className="text-2xl">🎓</span>
             </div>
 
             <div>
               <div className="flex items-center space-x-2 justify-center md:justify-start">
-                <span className="bg-yellow-400 text-emerald-950 font-extrabold text-xs px-2 py-0.5 rounded shadow uppercase tracking-wide">
+                <span className="bg-gray-100 text-orange-900 font-extrabold text-xs px-2 py-0.5 rounded shadow uppercase tracking-wide">
                   DIRECCIÓN DE BIENESTAR SOCIAL
                 </span>
                 {electionStatus === "paused" && (
@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
               <h1 className="text-xl md:text-3xl font-black tracking-tight text-white drop-shadow-sm font-sans uppercase mt-0.5">
                 SISTEMA DE VOTACIONES {year}
               </h1>
-              <p className="text-xs md:text-sm text-emerald-100 font-medium">
+              <p className="text-xs md:text-sm text-orange-100 font-medium">
                 {institutionName} • Elección de Personería y Contraloría Estudiantil
               </p>
             </div>
@@ -71,25 +71,25 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Right Badge / Student Info / Admin Quick Nav */}
           <div className="flex items-center gap-3">
             {currentStudent ? (
-              <div className="bg-emerald-900/90 border border-emerald-500/50 rounded-lg px-4 py-2 text-right shadow-inner flex items-center space-x-3">
+              <div className="bg-orange-950/90 border border-orange-500/50 rounded-lg px-4 py-2 text-right shadow-inner flex items-center space-x-3">
                 <div className="hidden sm:block">
-                  <span className="text-[10px] uppercase font-bold text-yellow-300 tracking-wider block">
+                  <span className="text-[10px] uppercase font-bold text-gray-200 tracking-wider block">
                     BIENVENIDO ESTUDIANTE:
                   </span>
                   <span className="text-sm font-bold text-white block uppercase max-w-[200px] truncate">
                     {currentStudent.fullName}
                   </span>
-                  <span className="text-[11px] text-emerald-200">
+                  <span className="text-[11px] text-orange-200">
                     ID: {currentStudent.documentId} | Grado: {currentStudent.groupName}
                   </span>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-white font-bold text-lg shadow">
+                <div className="w-10 h-10 rounded-full bg-orange-500 border-2 border-white flex items-center justify-center text-white font-bold text-lg shadow">
                   <User className="w-6 h-6" />
                 </div>
                 {onLogout && (
                   <button
                     onClick={onLogout}
-                    className="text-xs text-yellow-300 hover:text-white underline font-semibold ml-2 cursor-pointer"
+                    className="text-xs text-gray-200 hover:text-white underline font-semibold ml-2 cursor-pointer"
                     title="Salir de la sesión"
                   >
                     Salir
@@ -98,13 +98,13 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             ) : isAdmin ? (
               <div className="flex items-center gap-2">
-                <span className="bg-yellow-400 text-emerald-950 text-xs font-bold px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow">
-                  <Shield className="w-4 h-4 text-emerald-900" /> ADMIN CONECTADO
+                <span className="bg-gray-100 text-orange-900 text-xs font-bold px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow">
+                  <Shield className="w-4 h-4 text-orange-800" /> ADMIN CONECTADO
                 </span>
                 {onLogout && (
                   <button
                     onClick={onLogout}
-                    className="bg-emerald-950 hover:bg-emerald-900 text-white text-xs px-3 py-1.5 rounded border border-emerald-600 font-medium cursor-pointer"
+                    className="bg-orange-950 hover:bg-orange-900 text-white text-xs px-3 py-1.5 rounded border border-orange-600 font-medium cursor-pointer"
                   >
                     Cerrar Sesión
                   </button>
@@ -117,8 +117,8 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={onToggleKiosk}
                     className={`text-xs px-3 py-1.5 rounded-md font-bold transition flex items-center gap-1 cursor-pointer border ${
                       kioskMode
-                        ? "bg-amber-400 text-amber-950 border-amber-300"
-                        : "bg-emerald-800 text-emerald-100 hover:bg-emerald-900 border-emerald-600"
+                        ? "bg-gray-200 text-orange-950 border-gray-300"
+                        : "bg-orange-800 text-orange-100 hover:bg-orange-900 border-orange-600"
                     }`}
                   >
                     <Monitor className="w-3.5 h-3.5" />
@@ -128,9 +128,9 @@ export const Header: React.FC<HeaderProps> = ({
                 {onOpenAdminLogin && (
                   <button
                     onClick={onOpenAdminLogin}
-                    className="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 text-xs font-black px-3 py-1.5 rounded-md shadow transition flex items-center gap-1.5 cursor-pointer"
+                    className="bg-gray-100 hover:bg-white text-orange-950 text-xs font-black px-3 py-1.5 rounded-md shadow transition flex items-center gap-1.5 cursor-pointer"
                   >
-                    <Shield className="w-3.5 h-3.5 text-emerald-900" />
+                    <Shield className="w-3.5 h-3.5 text-orange-800" />
                     Ingreso Admin
                   </button>
                 )}

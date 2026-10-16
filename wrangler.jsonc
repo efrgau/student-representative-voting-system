@@ -14,7 +14,7 @@
       "database_name": "voting-db",
       // REEMPLAZAR: crea la DB real con `npx wrangler d1 create voting-db`
       // y pega aquí el database_id que devuelva.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "07be96e0-364a-4096-ba73-17f96e574b0e",
       "migrations_dir": "drizzle"
     }
   ]

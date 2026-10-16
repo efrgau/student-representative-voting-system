@@ -29,15 +29,15 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
       <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full my-8 overflow-hidden border border-gray-300 print:shadow-none print:m-0 print:w-full print:max-w-none">
         
         {/* Modal Controls (Hidden in Print) */}
-        <div className="bg-slate-900 text-white p-4 flex items-center justify-between print:hidden">
+        <div className="bg-gray-900 text-white p-4 flex items-center justify-between print:hidden">
           <div className="flex items-center space-x-2">
-            <FileText className="w-5 h-5 text-yellow-400" />
+            <FileText className="w-5 h-5 text-orange-400" />
             <h3 className="font-bold text-sm uppercase">Vista Previa - Acta Oficial de Escrutinio</h3>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => window.print()}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1.5 shadow cursor-pointer"
+              className="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-1.5 shadow cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               Imprimir / Guardar PDF
@@ -55,11 +55,11 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
         <div className="p-8 md:p-12 space-y-8 bg-white text-gray-900 font-serif print:p-6">
           
           {/* Institution Header */}
-          <div className="text-center border-b-2 border-emerald-800 pb-6">
-            <div className="w-16 h-16 bg-emerald-800 text-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-2xl border-2 border-yellow-400">
+          <div className="text-center border-b-2 border-orange-700 pb-6">
+            <div className="w-16 h-16 bg-orange-700 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-2xl border-2 border-gray-200">
               🎓
             </div>
-            <h1 className="text-xl md:text-2xl font-black uppercase text-emerald-950 font-sans tracking-wide">
+            <h1 className="text-xl md:text-2xl font-black uppercase text-orange-950 font-sans tracking-wide">
               {election?.institutionName || "COLEGIO NUESTRA SEÑORA DE LAS LAJAS - PASTO"}
             </h1>
             <h2 className="text-base font-bold uppercase text-gray-700 mt-1 font-sans">
@@ -82,7 +82,7 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
               </div>
               <div>
                 <span className="text-gray-500 block">Total Votos Emitidos:</span>
-                <span className="font-bold text-base text-emerald-700">{stats?.votedStudents || 0}</span>
+                <span className="font-bold text-base text-orange-700">{stats?.votedStudents || 0}</span>
               </div>
               <div>
                 <span className="text-gray-500 block">Abstención / Pendientes:</span>
@@ -90,7 +90,7 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
               </div>
               <div>
                 <span className="text-gray-500 block">Participación:</span>
-                <span className="font-bold text-base text-blue-700">{stats?.participationPercentage || 0}%</span>
+                <span className="font-bold text-base text-orange-700">{stats?.participationPercentage || 0}%</span>
               </div>
             </div>
           </div>
@@ -98,9 +98,9 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
           {/* Candidate Results Tables */}
           {positionResults?.map((posResult: any) => (
             <div key={posResult.id} className="space-y-3 font-sans">
-              <div className="bg-emerald-800 text-white px-4 py-2 rounded-t-lg flex justify-between items-center">
+              <div className="bg-orange-700 text-white px-4 py-2 rounded-t-lg flex justify-between items-center">
                 <h3 className="font-black text-sm uppercase">{posResult.name}</h3>
-                <span className="text-xs bg-yellow-400 text-emerald-950 px-2 py-0.5 rounded font-bold">
+                <span className="text-xs bg-gray-100 text-orange-900 px-2 py-0.5 rounded font-bold">
                   Total Votos: {posResult.totalVotes}
                 </span>
               </div>
@@ -119,7 +119,7 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
                   {posResult.candidates.map((cand: any, idx: number) => {
                     const isWinner = idx === 0 && posResult.totalVotes > 0 && !cand.isBlank;
                     return (
-                      <tr key={cand.id} className={isWinner ? "bg-yellow-50 font-bold" : "hover:bg-gray-50"}>
+                      <tr key={cand.id} className={isWinner ? "bg-orange-50 font-bold" : "hover:bg-gray-50"}>
                         <td className="p-2.5 border border-gray-300 font-mono">N° {cand.number}</td>
                         <td className="p-2.5 border border-gray-300 uppercase">
                           {cand.name}
@@ -129,7 +129,7 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
                         <td className="p-2.5 border border-gray-300 text-right font-mono">{cand.percentage}%</td>
                         <td className="p-2.5 border border-gray-300 text-center">
                           {isWinner ? (
-                            <span className="bg-emerald-700 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">
+                            <span className="bg-orange-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">
                               ★ ELECTO(A)
                             </span>
                           ) : cand.isBlank ? (
@@ -145,9 +145,9 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
               </table>
 
               {posResult.winner && !posResult.winner.isBlank && posResult.totalVotes > 0 && (
-                <div className="bg-emerald-50 border border-emerald-300 p-3 rounded-b-lg text-xs font-semibold text-emerald-950 flex items-center justify-between">
+                <div className="bg-orange-50 border border-orange-300 p-3 rounded-b-lg text-xs font-semibold text-orange-950 flex items-center justify-between">
                   <span>CANDIDATO(A) ELECTO(A) PARA {posResult.name.toUpperCase()}:</span>
-                  <span className="font-extrabold text-sm text-emerald-900 uppercase">
+                  <span className="font-extrabold text-sm text-orange-900 uppercase">
                     {posResult.winner.name} (N° {posResult.winner.number}) con {posResult.winner.votesCount} votos ({posResult.winner.percentage}%)
                   </span>
                 </div>

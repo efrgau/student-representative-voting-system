@@ -57,19 +57,19 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-gray-200">
         
         {/* Header */}
-        <div className="bg-emerald-800 text-white p-5 flex items-center justify-between border-b-4 border-yellow-400">
+        <div className="bg-orange-700 text-white p-5 flex items-center justify-between border-b-4 border-gray-200">
           <div className="flex items-center space-x-2">
-            <div className="w-9 h-9 bg-yellow-400 text-emerald-950 rounded-lg flex items-center justify-center font-bold">
+            <div className="w-9 h-9 bg-gray-100 text-orange-800 rounded-lg flex items-center justify-center font-bold">
               <Shield className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-extrabold text-base uppercase">Acceso Administrador</h3>
-              <p className="text-[11px] text-emerald-200">Panel de Control & Jurado Electoral</p>
+              <p className="text-[11px] text-orange-100">Panel de Control & Jurado Electoral</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-white hover:bg-emerald-700 p-1.5 rounded-full transition cursor-pointer"
+            className="text-white hover:bg-orange-600 p-1.5 rounded-full transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -95,7 +95,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full pl-9 pr-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="w-full pl-9 pr-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"
                 placeholder="admin@colegio.edu.co"
               />
             </div>
@@ -112,18 +112,18 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full pl-9 pr-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="w-full pl-9 pr-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"
                 placeholder="••••••••"
               />
             </div>
           </div>
 
-          <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-200 flex items-center justify-between text-xs">
-            <span className="text-emerald-900 font-semibold">Credenciales demo prellenadas:</span>
+          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200 flex items-center justify-between text-xs">
+            <span className="text-orange-900 font-semibold">Credenciales demo prellenadas:</span>
             <button
               type="button"
               onClick={handleQuickDemoFill}
-              className="text-emerald-700 hover:text-emerald-900 font-bold underline cursor-pointer"
+              className="text-orange-700 hover:text-orange-900 font-bold underline cursor-pointer"
             >
               Usar Demo
             </button>
@@ -140,7 +140,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
             <button
               type="submit"
               disabled={isLoading}
-              className="px-6 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black text-xs uppercase tracking-wider rounded-lg shadow border border-emerald-900 cursor-pointer disabled:opacity-50"
+              className="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-wider rounded-lg shadow border border-orange-800 cursor-pointer disabled:opacity-50"
             >
               {isLoading ? "Ingresando..." : "Iniciar Sesión"}
             </button>
