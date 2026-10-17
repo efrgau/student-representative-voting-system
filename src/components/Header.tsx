@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Vote, Shield, User, Monitor, AlertCircle, RefreshCw } from "lucide-react";
+import { Logo } from "./Logo";
 
 interface HeaderProps {
   institutionName?: string;
@@ -39,8 +40,8 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Institution Crest & Title */}
           <div className="flex items-center space-x-3 text-center md:text-left">
             {/* Left Institutional Badge */}
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-brand-700 flex items-center justify-center font-black text-xl shadow-lg border-2 border-brand-200 shrink-0 animate-floaty">
-              <span className="text-2xl">🎓</span>
+            <div className="shrink-0 animate-floaty">
+              <Logo className="w-12 h-12 md:w-14 md:h-14 rounded-full shadow-lg ring-2 ring-white/70" />
             </div>
 
             <div>

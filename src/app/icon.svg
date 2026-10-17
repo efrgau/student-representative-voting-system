@@ -6,12 +6,13 @@
     </linearGradient>
   </defs>
 
-  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <circle cx="32" cy="32" r="32" fill="url(#bg)"/>
+  <circle cx="32" cy="32" r="28.5" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.5"/>
 
-  <rect x="24" y="9" width="16" height="26" rx="3" fill="#ffffff"/>
-  <path d="M27.5 21.2 L30.6 24.4 L36.8 16.6" fill="none" stroke="#2fa96c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="25" y="14" width="14" height="20" rx="2" fill="#ffffff"/>
+  <path d="M28.5 23.2 L31.3 26 L36.6 19.4" fill="none" stroke="#2fa96c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <rect x="12" y="30" width="40" height="24" rx="6" fill="#f0f8ff"/>
-  <rect x="22.5" y="33.2" width="19" height="3.6" rx="1.8" fill="#274f80"/>
-  <path d="M25 45 L29.5 49.5 L39 40" fill="none" stroke="#2fa96c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="14" y="30.5" width="36" height="19.5" rx="4.5" fill="#ffffff"/>
+  <rect x="24" y="33.5" width="16" height="3" rx="1.5" fill="#274f80"/>
+  <path d="M26 42.5 L30 46.5 L38.5 37.5" fill="none" stroke="#2fa96c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

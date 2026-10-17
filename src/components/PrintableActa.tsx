@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Printer, Shield, CheckCircle, FileText, X } from "lucide-react";
+import { Logo } from "./Logo";
 
 interface PrintableActaProps {
   isOpen: boolean;
@@ -56,8 +57,8 @@ export const PrintableActa: React.FC<PrintableActaProps> = ({
           
           {/* Institution Header */}
           <div className="text-center border-b-2 border-brand-700 pb-6">
-            <div className="w-16 h-16 bg-brand-700 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-2xl border-2 border-gray-200">
-              🎓
+            <div className="mx-auto mb-3 w-16 h-16">
+              <Logo className="w-16 h-16" />
             </div>
             <h1 className="text-xl md:text-2xl font-black uppercase text-brand-950 font-sans tracking-wide">
               {election?.institutionName || "INSTITUCIÓN PRUEBA"}
