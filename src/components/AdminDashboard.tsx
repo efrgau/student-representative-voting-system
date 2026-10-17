@@ -49,9 +49,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
   // Candidate edit state
   const [candidateList, setCandidateList] = useState<any[]>([]);
   const [showAddCandidateModal, setShowAddCandidateModal] = useState(false);
+  const [editingCandidateId, setEditingCandidateId] = useState<number | null>(null);
   const [newCandidate, setNewCandidate] = useState({
     positionId: 1,
-    number: "04",
+    number: "",
     name: "",
     photoUrl: "",
     slogan: "",
@@ -117,6 +118,85 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
       }
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const handleOpenCreateCandidate = () => {
+    setEditingCandidateId(null);
+    setNewCandidate({
+      positionId: dashboardData?.positionResults?.[0]?.id || 1,
+      number: "",
+      name: "",
+      photoUrl: "",
+      slogan: "",
+      proposals: "",
+      isBlank: false,
+    });
+    setShowAddCandidateModal(true);
+  };
+
+  const handleOpenEditCandidate = (cand: any) => {
+    let proposalsText = "";
+    try {
+      const parsed = typeof cand.proposals === "string" ? JSON.parse(cand.proposals) : cand.proposals;
+      if (Array.isArray(parsed)) proposalsText = parsed.join("\n");
+    } catch {
+      proposalsText = "";
+    }
+    setEditingCandidateId(cand.id);
+    setNewCandidate({
+      positionId: cand.positionId,
+      number: cand.number || "",
+      name: cand.name || "",
+      photoUrl: cand.photoUrl || "",
+      slogan: cand.slogan || "",
+      proposals: proposalsText,
+      isBlank: !!cand.isBlank,
+    });
+    setShowAddCandidateModal(true);
+  };
+
+  const handleSubmitCandidate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const isEdit = editingCandidateId !== null;
+    try {
+      const res = await fetch(
+        isEdit ? `/api/admin/candidates/${editingCandidateId}` : "/api/admin/candidates",
+        {
+          method: isEdit ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newCandidate),
+        }
+      );
+      const data: any = await res.json();
+      if (data.success) {
+        setShowAddCandidateModal(false);
+        setEditingCandidateId(null);
+        fetchCandidates();
+        fetchDashboardData();
+        if (onRefreshBallot) onRefreshBallot();
+      } else {
+        alert(data.error || "No se pudo guardar el candidato.");
+      }
+    } catch (e) {
+      alert("Error de conexión al guardar el candidato.");
+    }
+  };
+
+  const handleDeleteCandidate = async (cand: any) => {
+    if (!confirm(`¿Eliminar el candidato "${cand.name}" del tarjetón?`)) return;
+    try {
+      const res = await fetch(`/api/admin/candidates/${cand.id}`, { method: "DELETE" });
+      const data: any = await res.json();
+      if (data.success) {
+        fetchCandidates();
+        fetchDashboardData();
+        if (onRefreshBallot) onRefreshBallot();
+      } else {
+        alert(data.error || "No se pudo eliminar el candidato.");
+      }
+    } catch (e) {
+      alert("Error de conexión al eliminar el candidato.");
     }
   };
 
@@ -226,6 +306,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
   }
 
   const { election, stats, groupStats, positionResults, recentLogs } = dashboardData || {};
+  const positionOptions: { id: number; name: string }[] = (positionResults || []).map((p: any) => ({
+    id: p.id,
+    name: p.name,
+  }));
 
   return (
     <div className="w-full max-w-7xl mx-auto py-6 px-4 space-y-6">
@@ -626,16 +710,23 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
         {/* Tab 3: Candidates Management */}
         {activeTab === "candidates" && (
           <div className="p-6 space-y-6">
-            <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-gray-200 pb-4">
               <div>
                 <h3 className="font-extrabold text-base text-gray-900 uppercase">Candidatos Registrados</h3>
                 <p className="text-xs text-gray-500">Listado de propuestas e imágenes asignadas por tarjetón</p>
               </div>
+              <button
+                onClick={handleOpenCreateCandidate}
+                className="w-full sm:w-auto px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs rounded-lg shadow flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
+              >
+                <Plus className="w-4 h-4" />
+                Agregar Candidato
+              </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {candidateList.map((cand) => (
-                <div key={cand.id} className="bg-white rounded-2xl border-2 border-brand-100 p-4 shadow-sm space-y-3">
+                <div key={cand.id} className="bg-white rounded-2xl border-2 border-brand-100 p-4 shadow-sm space-y-3 flex flex-col">
                   <div className="flex items-center space-x-3">
                     {cand.photoUrl ? (
                       <img src={cand.photoUrl} alt={cand.name} className="w-14 h-18 object-cover rounded border border-gray-300" />
@@ -644,16 +735,42 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                         {cand.isBlank ? "BLANCO" : "SIN FOTO"}
                       </div>
                     )}
-                    <div>
+                    <div className="min-w-0">
                       <span className="bg-brand-500 text-white text-xs font-mono font-bold px-2.5 py-0.5 rounded-full">
                         N° {cand.number}
                       </span>
                       <h4 className="font-black text-sm text-gray-900 uppercase mt-1">{cand.name}</h4>
                       {cand.slogan && <p className="text-xs italic text-brand-700 font-medium">{cand.slogan}</p>}
+                      <p className="text-[11px] text-gray-500 mt-0.5">
+                        {positionOptions.find((p) => p.id === cand.positionId)?.name || "Cargo sin asignar"}
+                      </p>
                     </div>
+                  </div>
+
+                  <div className="pt-2 mt-auto border-t border-gray-100 flex items-center justify-end gap-2">
+                    <button
+                      onClick={() => handleOpenEditCandidate(cand)}
+                      className="px-3 py-1.5 text-[11px] font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 border border-brand-200 rounded-lg flex items-center gap-1 cursor-pointer"
+                    >
+                      <Edit className="w-3.5 h-3.5" />
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDeleteCandidate(cand)}
+                      className="px-3 py-1.5 text-[11px] font-bold text-coral-700 bg-coral-50 hover:bg-coral-100 border border-coral-200 rounded-lg flex items-center gap-1 cursor-pointer"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      Eliminar
+                    </button>
                   </div>
                 </div>
               ))}
+
+              {candidateList.length === 0 && (
+                <div className="col-span-full p-8 text-center text-sm text-gray-500 italic bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                  No hay candidatos registrados. Usa &ldquo;Agregar Candidato&rdquo; para crear el primero.
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -757,6 +874,120 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                   className="px-5 py-2 bg-brand-600 text-white font-bold text-xs uppercase rounded-lg shadow cursor-pointer"
                 >
                   Guardar Estudiante
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Add / Edit Candidate Modal */}
+      {showAddCandidateModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl p-6 max-w-lg w-full shadow-2xl space-y-4 my-8">
+            <h3 className="text-base font-black uppercase text-gray-900">
+              {editingCandidateId !== null ? "Editar Candidato" : "Agregar Nuevo Candidato"}
+            </h3>
+            <form onSubmit={handleSubmitCandidate} className="space-y-3">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 uppercase">Cargo / Posición:</label>
+                  <select
+                    value={newCandidate.positionId}
+                    onChange={(e) => setNewCandidate({ ...newCandidate, positionId: parseInt(e.target.value, 10) })}
+                    className="w-full px-3 py-2 text-xs border rounded-lg bg-white focus:ring-2 focus:ring-brand-500"
+                  >
+                    {positionOptions.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 uppercase">N° Tarjetón:</label>
+                  <input
+                    type="text"
+                    required
+                    value={newCandidate.number}
+                    onChange={(e) => setNewCandidate({ ...newCandidate, number: e.target.value })}
+                    placeholder="01"
+                    className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase">Nombre Completo:</label>
+                <input
+                  type="text"
+                  required
+                  value={newCandidate.name}
+                  onChange={(e) => setNewCandidate({ ...newCandidate, name: e.target.value })}
+                  placeholder="ANA MARÍA TORRES"
+                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase">URL de la Foto (opcional):</label>
+                <input
+                  type="text"
+                  value={newCandidate.photoUrl}
+                  onChange={(e) => setNewCandidate({ ...newCandidate, photoUrl: e.target.value })}
+                  placeholder="https://..."
+                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase">Eslogan (opcional):</label>
+                <input
+                  type="text"
+                  value={newCandidate.slogan}
+                  onChange={(e) => setNewCandidate({ ...newCandidate, slogan: e.target.value })}
+                  placeholder="Con voz joven, hacemos la diferencia"
+                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase">Propuestas (una por línea):</label>
+                <textarea
+                  rows={4}
+                  value={newCandidate.proposals}
+                  onChange={(e) => setNewCandidate({ ...newCandidate, proposals: e.target.value })}
+                  placeholder={"Biblioteca más grande\nMás deportes"}
+                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500 resize-none"
+                />
+              </div>
+
+              <label className="flex items-center gap-2 text-xs font-bold text-gray-700 uppercase cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={newCandidate.isBlank}
+                  onChange={(e) => setNewCandidate({ ...newCandidate, isBlank: e.target.checked })}
+                  className="w-4 h-4 accent-brand-600"
+                />
+                Es voto en blanco
+              </label>
+
+              <div className="pt-2 flex justify-end space-x-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAddCandidateModal(false);
+                    setEditingCandidateId(null);
+                  }}
+                  className="px-4 py-2 text-xs font-bold text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase rounded-lg shadow cursor-pointer"
+                >
+                  {editingCandidateId !== null ? "Guardar Cambios" : "Crear Candidato"}
                 </button>
               </div>
             </form>
