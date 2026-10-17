@@ -721,12 +721,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-xs font-bold text-gray-700 uppercase">Grado:</label>
-                  <input
-                    type="text"
+                  <select
                     value={newStudent.grade}
                     onChange={(e) => setNewStudent({ ...newStudent, grade: e.target.value })}
-                    className="w-full px-3 py-2 text-xs border rounded-lg"
-                  />
+                    className="w-full px-3 py-2 text-xs border rounded-lg bg-white focus:ring-2 focus:ring-brand-500"
+                  >
+                    {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"].map((g) => (
+                      <option key={g} value={g}>
+                        {g}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-gray-700 uppercase">Grupo:</label>
