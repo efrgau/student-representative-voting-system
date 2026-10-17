@@ -189,7 +189,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 text-gray-900 font-sans selection:bg-orange-200">
+    <div className="min-h-screen flex flex-col text-brand-950 font-sans selection:bg-brand-200">
       
       {/* Institutional Top Header */}
       <Header

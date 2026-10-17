@@ -218,7 +218,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
     return (
       <div className="w-full min-h-[400px] flex items-center justify-center">
         <div className="flex flex-col items-center space-y-3">
-          <div className="w-10 h-10 border-4 border-orange-600 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-sm font-bold text-gray-700">Cargando Panel Administrativo...</p>
         </div>
       </div>
@@ -236,7 +236,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
           
           <div>
             <div className="flex items-center space-x-2">
-              <span className="bg-orange-700 text-gray-100 font-black text-xs px-2.5 py-0.5 rounded uppercase">
+              <span className="bg-brand-700 text-gray-100 font-black text-xs px-2.5 py-0.5 rounded uppercase">
                 PANEL DE JURADO ELECTORAL
               </span>
               <span className={`text-xs px-2.5 py-0.5 rounded font-bold uppercase ${
@@ -261,7 +261,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
               disabled={election?.status === "active"}
               className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition cursor-pointer border ${
                 election?.status === "active"
-                  ? "bg-orange-600 text-white border-orange-700 shadow"
+                  ? "bg-brand-600 text-white border-brand-700 shadow"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300"
               }`}
             >
@@ -297,7 +297,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
 
             <button
               onClick={() => setShowActaModal(true)}
-              className="px-3.5 py-2 bg-orange-600 hover:bg-orange-700 text-white font-black text-xs rounded-xl shadow border border-orange-700 flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 bg-brand-600 hover:bg-brand-700 text-white font-black text-xs rounded-xl shadow border border-brand-700 flex items-center gap-1.5 cursor-pointer"
             >
               <FileText className="w-4 h-4 text-white" />
               Ver / Imprimir Acta
@@ -318,7 +318,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-gray-200 text-orange-700 flex items-center justify-center font-bold">
+          <div className="w-12 h-12 rounded-xl bg-gray-200 text-brand-700 flex items-center justify-center font-bold">
             <Users className="w-6 h-6" />
           </div>
           <div>
@@ -328,22 +328,22 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
         </div>
 
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center font-bold">
+          <div className="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center font-bold">
             <UserCheck className="w-6 h-6" />
           </div>
           <div>
             <p className="text-xs font-bold text-gray-500 uppercase">Votos Emitidos</p>
-            <p className="text-2xl font-black text-orange-600">{stats?.votedStudents || 0}</p>
+            <p className="text-2xl font-black text-brand-600">{stats?.votedStudents || 0}</p>
           </div>
         </div>
 
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold">
+          <div className="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold">
             <BarChart3 className="w-6 h-6" />
           </div>
           <div>
             <p className="text-xs font-bold text-gray-500 uppercase">Participación</p>
-            <p className="text-2xl font-black text-orange-700">{stats?.participationPercentage || 0}%</p>
+            <p className="text-2xl font-black text-brand-700">{stats?.participationPercentage || 0}%</p>
           </div>
         </div>
 
@@ -365,7 +365,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
             onClick={() => setActiveTab("results")}
             className={`px-5 py-3.5 text-xs font-black uppercase tracking-wider transition flex items-center gap-2 shrink-0 cursor-pointer border-b-2 ${
               activeTab === "results"
-                ? "bg-white text-orange-700 border-orange-600 shadow-sm"
+                ? "bg-white text-brand-700 border-brand-600 shadow-sm"
                 : "text-gray-600 hover:text-gray-900 border-transparent"
             }`}
           >
@@ -377,7 +377,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
             onClick={() => setActiveTab("students")}
             className={`px-5 py-3.5 text-xs font-black uppercase tracking-wider transition flex items-center gap-2 shrink-0 cursor-pointer border-b-2 ${
               activeTab === "students"
-                ? "bg-white text-orange-700 border-orange-600 shadow-sm"
+                ? "bg-white text-brand-700 border-brand-600 shadow-sm"
                 : "text-gray-600 hover:text-gray-900 border-transparent"
             }`}
           >
@@ -389,7 +389,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
             onClick={() => setActiveTab("candidates")}
             className={`px-5 py-3.5 text-xs font-black uppercase tracking-wider transition flex items-center gap-2 shrink-0 cursor-pointer border-b-2 ${
               activeTab === "candidates"
-                ? "bg-white text-orange-700 border-orange-600 shadow-sm"
+                ? "bg-white text-brand-700 border-brand-600 shadow-sm"
                 : "text-gray-600 hover:text-gray-900 border-transparent"
             }`}
           >
@@ -401,7 +401,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
             onClick={() => setActiveTab("audit")}
             className={`px-5 py-3.5 text-xs font-black uppercase tracking-wider transition flex items-center gap-2 shrink-0 cursor-pointer border-b-2 ${
               activeTab === "audit"
-                ? "bg-white text-orange-700 border-orange-600 shadow-sm"
+                ? "bg-white text-brand-700 border-brand-600 shadow-sm"
                 : "text-gray-600 hover:text-gray-900 border-transparent"
             }`}
           >
@@ -421,7 +421,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                       <h3 className="font-black text-sm md:text-base text-gray-900 uppercase">
                         {pos.name}
                       </h3>
-                      <span className="bg-orange-700 text-white font-mono text-xs px-2.5 py-1 rounded font-bold">
+                      <span className="bg-brand-700 text-white font-mono text-xs px-2.5 py-1 rounded font-bold">
                         Votos: {pos.totalVotes}
                       </span>
                     </div>
@@ -433,8 +433,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                           <div key={cand.id} className="bg-white p-3.5 rounded-xl border border-gray-200 space-y-2">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-2">
-                                <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
-                                  cand.isBlank ? "bg-gray-200 text-gray-800" : "bg-black text-white"
+                                <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-full ${
+                                  cand.isBlank ? "bg-slate-200 text-slate-700" : "bg-brand-500 text-white"
                                 }`}>
                                   N° {cand.number}
                                 </span>
@@ -442,7 +442,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                                   {cand.name}
                                 </span>
                                 {isLeading && (
-                                  <span className="bg-orange-600 text-white text-[10px] font-black px-2 py-0.5 rounded flex items-center gap-0.5">
+                                  <span className="bg-brand-600 text-white text-[10px] font-black px-2 py-0.5 rounded flex items-center gap-0.5">
                                     ★ LÍDER
                                   </span>
                                 )}
@@ -460,7 +460,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                                   cand.isBlank
                                     ? "bg-gray-400"
                                     : isLeading
-                                    ? "bg-orange-600"
+                                    ? "bg-brand-600"
                                     : "bg-gray-500"
                                 }`}
                                 style={{ width: `${Math.max(cand.percentage, 2)}%` }}
@@ -486,10 +486,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                   <div key={g.group} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-2">
                     <div className="flex items-center justify-between text-xs font-bold">
                       <span className="text-gray-900">Grado {g.group}</span>
-                      <span className="text-orange-600 font-mono">{g.percentage}%</span>
+                      <span className="text-brand-600 font-mono">{g.percentage}%</span>
                     </div>
                     <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                      <div className="bg-orange-600 h-full rounded-full" style={{ width: `${g.percentage}%` }}></div>
+                      <div className="bg-brand-600 h-full rounded-full" style={{ width: `${g.percentage}%` }}></div>
                     </div>
                     <div className="text-[11px] text-gray-500 flex justify-between">
                       <span>Votaron: {g.voted}</span>
@@ -516,7 +516,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                     placeholder="Buscar por nombre o ID..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-3 py-1.5 text-xs border rounded-lg focus:ring-2 focus:ring-orange-500"
+                    className="w-full pl-9 pr-3 py-1.5 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
                   />
                 </div>
 
@@ -545,7 +545,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
 
               <button
                 onClick={() => setShowAddStudentModal(true)}
-                className="w-full sm:w-auto px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-lg shadow flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
+                className="w-full sm:w-auto px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-lg shadow flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
               >
                 <Plus className="w-4 h-4" />
                 Agregar Estudiante
@@ -635,7 +635,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {candidateList.map((cand) => (
-                <div key={cand.id} className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm space-y-3">
+                <div key={cand.id} className="bg-white rounded-2xl border-2 border-brand-100 p-4 shadow-sm space-y-3">
                   <div className="flex items-center space-x-3">
                     {cand.photoUrl ? (
                       <img src={cand.photoUrl} alt={cand.name} className="w-14 h-18 object-cover rounded border border-gray-300" />
@@ -645,11 +645,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                       </div>
                     )}
                     <div>
-                      <span className="bg-black text-white text-xs font-mono font-bold px-2 py-0.5 rounded">
+                      <span className="bg-brand-500 text-white text-xs font-mono font-bold px-2.5 py-0.5 rounded-full">
                         N° {cand.number}
                       </span>
                       <h4 className="font-black text-sm text-gray-900 uppercase mt-1">{cand.name}</h4>
-                      {cand.slogan && <p className="text-xs italic text-orange-700 font-medium">{cand.slogan}</p>}
+                      {cand.slogan && <p className="text-xs italic text-brand-700 font-medium">{cand.slogan}</p>}
                     </div>
                   </div>
                 </div>
@@ -666,7 +666,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
               {recentLogs?.map((log: any) => (
                 <div key={log.id} className="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-3">
-                    <span className="bg-orange-700 text-white font-mono font-bold text-[10px] px-2 py-0.5 rounded uppercase">
+                    <span className="bg-brand-700 text-white font-mono font-bold text-[10px] px-2 py-0.5 rounded uppercase">
                       {log.action}
                     </span>
                     <span className="text-gray-800 font-medium">{log.details}</span>
@@ -702,7 +702,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                   value={newStudent.documentId}
                   onChange={(e) => setNewStudent({ ...newStudent, documentId: e.target.value })}
                   placeholder="1085990011"
-                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
                 />
               </div>
 
@@ -714,7 +714,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                   value={newStudent.fullName}
                   onChange={(e) => setNewStudent({ ...newStudent, fullName: e.target.value })}
                   placeholder="CARLOS EDUARDO MORALES"
-                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 py-2 text-xs border rounded-lg focus:ring-2 focus:ring-brand-500"
                 />
               </div>
 
@@ -749,7 +749,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onRefr
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-orange-600 text-white font-bold text-xs uppercase rounded-lg shadow cursor-pointer"
+                  className="px-5 py-2 bg-brand-600 text-white font-bold text-xs uppercase rounded-lg shadow cursor-pointer"
                 >
                   Guardar Estudiante
                 </button>

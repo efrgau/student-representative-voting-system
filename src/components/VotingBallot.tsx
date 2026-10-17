@@ -57,10 +57,10 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
     <div className="w-full max-w-7xl mx-auto py-4 px-2 sm:px-6">
       
       {/* Top Ballot Header Banner matching Screenshot 2 */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-3xl shadow-lg border-2 border-brand-100 p-4 mb-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-6 h-6 text-orange-600" />
+            <ShieldCheck className="w-6 h-6 text-brand-600" />
             <div>
               <h2 className="text-base sm:text-lg font-black text-gray-900 uppercase">
                 Tarjetón Electoral de Votación Digital {year}
@@ -71,7 +71,7 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
             </div>
           </div>
 
-          <div className="bg-orange-50 border border-orange-300 text-orange-800 px-3 py-1.5 rounded-lg text-xs font-bold">
+          <div className="bg-brand-50 border border-brand-300 text-brand-800 px-3 py-1.5 rounded-lg text-xs font-bold">
             Categorías: {Object.keys(selectedCandidates).length} / {positions.length} completadas
           </div>
         </div>
@@ -86,13 +86,13 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
           return (
             <div
               key={pos.id}
-              className={`bg-white rounded-2xl shadow-md border border-gray-200 p-4 sm:p-6 flex flex-col justify-between relative ${
+              className={`bg-white rounded-3xl shadow-md border-2 border-brand-100 p-4 sm:p-6 flex flex-col justify-between relative ${
                 posIdx < positions.length - 1 ? "lg:border-r lg:border-r-gray-300" : ""
               }`}
             >
               <div>
                 {/* Category Header Banner */}
-                <div className="border-b-2 border-gray-900 pb-3 mb-6">
+                <div className="border-b-2 border-brand-200 pb-3 mb-6">
                   <h3 className="text-xs sm:text-sm md:text-base font-black text-gray-900 uppercase tracking-tight font-sans">
                     SELECCIONA TU CANDIDATO PARA {pos.name}:
                   </h3>
@@ -112,26 +112,26 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
                         onClick={() => handleSelect(pos.id, cand.id)}
                         className={`group relative flex flex-col items-center bg-white rounded-lg p-2.5 sm:p-3 transition-all cursor-pointer select-none border-2 ${
                           isSelected
-                            ? "border-orange-600 ring-4 ring-orange-400/50 shadow-2xl scale-[1.02] bg-orange-50/40"
-                            : "border-black hover:border-orange-600 hover:shadow-lg hover:scale-[1.01]"
+                            ? "border-brand-600 ring-4 ring-brand-400/50 shadow-2xl scale-[1.02] bg-brand-50/40"
+                            : "border-slate-200 hover:border-brand-400 hover:shadow-lg hover:scale-[1.01]"
                         }`}
                       >
                         {/* Number Badge */}
-                        <div className={`absolute -top-3 left-3 px-2 py-0.5 rounded text-xs font-black shadow z-10 ${
-                          cand.isBlank ? "bg-gray-800 text-white" : "bg-black text-white"
+                        <div className={`absolute -top-3 left-3 px-2.5 py-0.5 rounded-full text-xs font-black shadow z-10 ${
+                          cand.isBlank ? "bg-slate-500 text-white" : "bg-brand-500 text-white"
                         }`}>
                           N° {cand.number}
                         </div>
 
                         {/* Selected Checkmark Badge */}
                         {isSelected && (
-                          <div className="absolute -top-3 -right-2 bg-orange-600 text-white rounded-full p-1 shadow-lg z-10 animate-bounce">
+                          <div className="absolute -top-3 -right-2 bg-brand-600 text-white rounded-full p-1 shadow-lg z-10 animate-bounce">
                             <Check className="w-4 h-4 stroke-[3]" />
                           </div>
                         )}
 
                         {/* Candidate Image Container matching Screenshot Frame */}
-                        <div className="w-full aspect-[3/4] max-h-48 sm:max-h-56 bg-gray-100 rounded border border-gray-400 overflow-hidden mb-3 relative flex items-center justify-center">
+                        <div className="w-full aspect-[3/4] max-h-48 sm:max-h-56 bg-brand-50 rounded-2xl border-2 border-brand-100 overflow-hidden mb-3 relative flex items-center justify-center">
                           {cand.photoUrl ? (
                             <img
                               src={cand.photoUrl}
@@ -144,7 +144,7 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
                               <span className="text-xs font-black text-gray-700">VOTO EN BLANCO</span>
                             </div>
                           ) : (
-                            <div className="w-full h-full bg-orange-50 flex items-center justify-center text-orange-600">
+                            <div className="w-full h-full bg-brand-50 flex items-center justify-center text-brand-600">
                               <User className="w-16 h-16 stroke-1" />
                             </div>
                           )}
@@ -153,7 +153,7 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
                         {/* Candidate Full Name */}
                         <div className="text-center w-full min-h-[44px] flex flex-col items-center justify-start">
                           <p className={`text-xs sm:text-sm font-extrabold uppercase leading-tight ${
-                            isSelected ? "text-orange-900" : "text-gray-900"
+                            isSelected ? "text-brand-900" : "text-gray-900"
                           }`}>
                             {cand.name}
                           </p>
@@ -173,15 +173,15 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
                                 e.stopPropagation();
                                 setModalCandidate({ ...cand, positionName: pos.name });
                               }}
-                              className="text-[10px] text-orange-700 hover:text-orange-900 font-bold hover:underline flex items-center gap-0.5"
+                              className="text-[10px] text-brand-700 hover:text-brand-900 font-bold hover:underline flex items-center gap-0.5"
                             >
-                              <Info className="w-3 h-3 text-orange-600" />
+                              <Info className="w-3 h-3 text-brand-600" />
                               Propuestas
                             </button>
                           )}
 
                           <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded ${
-                            isSelected ? "bg-orange-600 text-white" : "bg-gray-100 text-gray-700"
+                            isSelected ? "bg-brand-600 text-white" : "bg-gray-100 text-gray-700"
                           }`}>
                             {isSelected ? "SELECCIONADO" : "ELEGIR"}
                           </span>
@@ -195,8 +195,8 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
               {/* Status footer for this category */}
               <div className="mt-6 pt-3 border-t border-gray-200 text-center">
                 {selectedId ? (
-                  <span className="text-xs font-bold text-orange-700 bg-orange-50 px-3 py-1.5 rounded-full border border-orange-200 inline-flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-orange-600" />
+                  <span className="text-xs font-bold text-brand-700 bg-brand-50 px-3 py-1.5 rounded-full border border-brand-200 inline-flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-brand-600" />
                     Selección lista para {pos.name}
                   </span>
                 ) : (
@@ -212,7 +212,7 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
       </div>
 
       {/* Floating / Bottom Submit Button Bar */}
-      <div className="mt-8 sticky bottom-4 z-30 bg-gray-100/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border-2 border-orange-600 max-w-2xl mx-auto text-center">
+      <div className="mt-8 sticky bottom-4 z-30 bg-gray-100/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border-2 border-brand-600 max-w-2xl mx-auto text-center">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
             <h4 className="text-xs font-extrabold uppercase text-gray-600 tracking-wider">
@@ -220,8 +220,8 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
             </h4>
             <p className="text-sm font-bold text-gray-900">
               {allSelected ? (
-                <span className="text-orange-700 flex items-center gap-1">
-                  <Check className="w-4 h-4 text-orange-600 stroke-[3]" />
+                <span className="text-brand-700 flex items-center gap-1">
+                  <Check className="w-4 h-4 text-brand-600 stroke-[3]" />
                   Todas las categorías fueron seleccionadas
                 </span>
               ) : (
@@ -236,7 +236,7 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
             type="button"
             disabled={!allSelected || isSubmitting}
             onClick={() => setShowConfirmModal(true)}
-            className="w-full sm:w-auto px-8 py-3.5 bg-orange-600 hover:bg-orange-700 text-white font-black text-sm md:text-base uppercase tracking-wider rounded-xl shadow-lg border-2 border-orange-800 disabled:opacity-50 disabled:cursor-not-allowed transition transform active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-black text-sm md:text-base uppercase tracking-wider rounded-2xl shadow-lg border-2 border-brand-300 disabled:opacity-50 disabled:cursor-not-allowed transition transform active:scale-95 cursor-pointer flex items-center justify-center gap-2"
           >
             <Award className="w-5 h-5 text-gray-100" />
             REGISTRAR Y EMITIR VOTO
@@ -264,9 +264,9 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
       {/* Vote Double Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 border-2 border-orange-600">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 border-2 border-brand-200">
             <div className="text-center">
-              <div className="w-14 h-14 bg-orange-100 text-orange-700 rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-orange-500">
+              <div className="w-14 h-14 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-brand-500">
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-black text-gray-900 uppercase">
@@ -278,21 +278,21 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
             </div>
 
             {/* Selected candidates summary */}
-            <div className="my-5 space-y-3 bg-orange-50/80 p-4 rounded-xl border border-orange-200">
+            <div className="my-5 space-y-3 bg-brand-50/80 p-4 rounded-xl border border-brand-200">
               {positions.map((pos) => {
                 const candId = selectedCandidates[pos.id];
                 const cand = pos.candidates.find((c) => c.id === candId);
                 return (
-                  <div key={pos.id} className="flex items-center justify-between border-b border-orange-200/60 pb-2 last:border-0 last:pb-0">
+                  <div key={pos.id} className="flex items-center justify-between border-b border-brand-200/60 pb-2 last:border-0 last:pb-0">
                     <div>
-                      <span className="text-[11px] font-bold text-orange-800 uppercase block">
+                      <span className="text-[11px] font-bold text-brand-800 uppercase block">
                         {pos.name}:
                       </span>
                       <span className="text-sm font-black text-gray-900">
                         {cand?.name || "Sin Selección"}
                       </span>
                     </div>
-                    <span className="bg-orange-600 text-white font-mono font-bold text-xs px-2.5 py-1 rounded">
+                    <span className="bg-brand-600 text-white font-mono font-bold text-xs px-2.5 py-1 rounded">
                       N° {cand?.number}
                     </span>
                   </div>
@@ -312,7 +312,7 @@ export const VotingBallot: React.FC<VotingBallotProps> = ({
                 type="button"
                 disabled={isSubmitting}
                 onClick={handleConfirmSubmit}
-                className="w-full sm:w-auto px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-lg border-2 border-orange-800 cursor-pointer flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg border-2 border-brand-300 cursor-pointer flex items-center justify-center gap-2"
               >
                 {isSubmitting ? "Procesando..." : "Sí, Confirmar Mi Voto"}
               </button>

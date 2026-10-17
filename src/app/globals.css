@@ -1,17 +1,59 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #fff7ed;
-  --color-primary-100: #ffedd5;
-  --color-primary-200: #fed7aa;
-  --color-primary-300: #fdba74;
-  --color-primary-400: #fb923c;
-  --color-primary-500: #f97316;
-  --color-primary-600: #ea580c;
-  --color-primary-700: #c2410c;
-  --color-primary-800: #9a3412;
-  --color-primary-900: #7c2d12;
-  --color-primary-950: #431407;
+  /*
+   * Paleta "amigable" para niños de primaria.
+   * Suave, alegre y con buen contraste para lectura.
+   * "brand" es el color principal (azul cielo suave) y sustituye al naranja.
+   */
+  --color-brand-50: #f0f8ff;
+  --color-brand-100: #dcefff;
+  --color-brand-200: #bfe1fd;
+  --color-brand-300: #93cdfb;
+  --color-brand-400: #5fb0f4;
+  --color-brand-500: #3b93e6;
+  --color-brand-600: #2f7bc7;
+  --color-brand-700: #2a63a3;
+  --color-brand-800: #274f80;
+  --color-brand-900: #243f66;
+  --color-brand-950: #172a45;
+
+  /* Acentos pastel para dar variedad y alegría */
+  --color-mint-50: #eafbf2;
+  --color-mint-100: #d3f6e3;
+  --color-mint-200: #a9ecc9;
+  --color-mint-300: #74dda6;
+  --color-mint-400: #47c584;
+  --color-mint-500: #2fa96c;
+  --color-mint-600: #218a56;
+  --color-mint-700: #1d6d46;
+
+  --color-sun-50: #fff9e6;
+  --color-sun-100: #fff2c2;
+  --color-sun-200: #ffe489;
+  --color-sun-300: #ffd34d;
+  --color-sun-400: #f7c02a;
+  --color-sun-500: #e0a51a;
+  --color-sun-600: #b87f0f;
+  --color-sun-700: #8f600b;
+
+  --color-coral-50: #fff1f0;
+  --color-coral-100: #ffe0dd;
+  --color-coral-200: #ffc3bd;
+  --color-coral-300: #ff9e94;
+  --color-coral-400: #fb7b6d;
+  --color-coral-500: #ef5b4a;
+  --color-coral-600: #d44231;
+  --color-coral-700: #ad3426;
+
+  --color-grape-50: #f5f2ff;
+  --color-grape-100: #eae4ff;
+  --color-grape-200: #d6cbff;
+  --color-grape-300: #bca9fb;
+  --color-grape-400: #a288f4;
+  --color-grape-500: #8a6ce8;
+  --color-grape-600: #7150cc;
+  --color-grape-700: #5b40a6;
 
   --color-secondary-50: #f9fafb;
   --color-secondary-100: #f3f4f6;
@@ -21,7 +63,13 @@
 }
 
 body {
-  background-color: var(--color-secondary-100);
+  color: #1f2d43;
+  background-color: #f1f7fe;
+  /* Puntitos suaves tipo confeti, muy sutiles */
+  background-image: radial-gradient(#d5e8fb 1.6px, transparent 1.6px),
+    radial-gradient(#e2eeff 1.6px, transparent 1.6px);
+  background-size: 44px 44px, 44px 44px;
+  background-position: 0 0, 22px 22px;
 }
 
 @layer utilities {
@@ -42,6 +90,11 @@ body {
     40%, 80% { transform: translateX(4px); }
   }
 
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
   .animate-fadeIn {
     animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
@@ -49,11 +102,16 @@ body {
   .animate-shake {
     animation: shake 0.3s ease-in-out;
   }
+
+  .animate-floaty {
+    animation: floaty 3s ease-in-out infinite;
+  }
 }
 
 @media print {
   body {
     background-color: white !important;
+    background-image: none !important;
   }
   header, footer, button, .print\:hidden {
     display: none !important;
